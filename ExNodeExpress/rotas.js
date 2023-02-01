@@ -4,7 +4,7 @@ var express = require("express");
 const app = express();
 
 app.get("/", function(req, res){
-    res.send("Seje Bem-vindo ao meu app!");
+    res.sendFile(__dirname + "/HTML/index.html")
 });
 
 app.get("/Sobre", function(req, res){
@@ -12,7 +12,7 @@ app.get("/Sobre", function(req, res){
 })
 
 app.get("/blog", function(req, res){
-    res.send("Meu Blog pessoal")
+res.send("Blog")
 })
 
 app.get("/Ola/:nome/:cargo/:idade", function(req,res){
@@ -21,5 +21,5 @@ app.get("/Ola/:nome/:cargo/:idade", function(req,res){
 })
 
 app.listen(8081, function(){
-    console.log("Servidor rodando na url http://localhost:8081")
+    console.log("Servidor rodando!!!")
 });
