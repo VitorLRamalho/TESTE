@@ -1,25 +1,21 @@
-//Rotas!!!
-
 var express = require("express");
 const app = express();
+const handlebars = require('express-handlebars');
+const Sequelize = require('sequelize');
 
-app.get("/", function(req, res){
-    res.sendFile(__dirname + "/HTML/index.html")
+// Config
+// Template Engine
+app.engine('handlebars', handlebars({ defaultLayout: 'main' }));
+app.set('view engine', 'handlebars');
+
+
+//Conexão com "BD" MySQL
+const sequelize = new Sequelize('teste', 'root', 'Templo@2000', {
+    host: "localhost",
+    dialect: 'mysql'
 });
 
-app.get("/Sobre", function(req, res){
-    res.send("Sobre o meu app")
-})
 
-app.get("/blog", function(req, res){
-res.send("Blog")
-})
-
-app.get("/Ola/:nome/:cargo/:idade", function(req,res){
-    res.send("<h1> Ola " +req.params.nome+ "</h1>"+"<h2> Seu cargo é: "+req.params.cargo+"</h2>"+"<h3> Sua idade é: "+req.params.idade+"</h3>");
-   
-})
-
-app.listen(8081, function(){
-    console.log("Servidor rodando!!!")
+app.listen(8081, function () {
+    console.log("Servidor Rodando na url http://localhost:8081")
 });
